@@ -13,8 +13,8 @@ const CreatePaste = () => {
         try {
             const payload = {
                 content,
-                expires_minutes: expiresMinutes ? parseInt(expiresMinutes) : null,
-                views_left: viewsLeft ? parseInt(viewsLeft) : null
+                expires_minutes: expiresMinutes ? parseInt(expiresMinutes) : 1,
+                views_left: viewsLeft ? parseInt(viewsLeft) : 1
             };
             const response = await api.post('/pastes/', payload);
             setResponseid(response.data.id);
@@ -54,7 +54,7 @@ const CreatePaste = () => {
                             min="1"
                             value={expiresMinutes}
                             onChange={(e) => setExpiresMinutes(e.target.value)}
-                            placeholder="Optional"
+                            placeholder=1
                             style={{ marginLeft: '5px', marginRight: '15px' }}
                         />
                     </label>
@@ -65,7 +65,7 @@ const CreatePaste = () => {
                             min="1"
                             value={viewsLeft}
                             onChange={(e) => setViewsLeft(e.target.value)}
-                            placeholder="Optional"
+                            placeholder=1
                             style={{ marginLeft: '5px' }}
                         />
                     </label>
