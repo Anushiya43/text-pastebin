@@ -3,17 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
 from routers import pastes
 import os
+from dotenv import load_dotenv
+
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:5173", # Vite dev server
-    "http://127.0.0.1:5173",
-]
+load_dotenv()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
