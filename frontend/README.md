@@ -11,7 +11,7 @@ React frontend for the pastebin application.
 
 2. Create `.env` file with backend API URL:
    ```
-   VITE_API_URL=http://localhost:8000
+   VITE_API_URL=http://127.0.0.1:8000
    ```
 
 3. Run the development server:
