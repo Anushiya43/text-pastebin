@@ -54,7 +54,7 @@ const CreatePaste = () => {
                             min="1"
                             value={expiresMinutes}
                             onChange={(e) => setExpiresMinutes(e.target.value)}
-                            placeholder=1
+                            placeholder="1"
                             style={{ marginLeft: '5px', marginRight: '15px' }}
                         />
                     </label>
@@ -65,7 +65,7 @@ const CreatePaste = () => {
                             min="1"
                             value={viewsLeft}
                             onChange={(e) => setViewsLeft(e.target.value)}
-                            placeholder=1
+                            placeholder="1"
                             style={{ marginLeft: '5px' }}
                         />
                     </label>
