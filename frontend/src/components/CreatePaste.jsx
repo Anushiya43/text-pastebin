@@ -13,8 +13,8 @@ const CreatePaste = () => {
         try {
             const payload = {
                 content,
-                expires_minutes: expiresMinutes ? parseInt(expiresMinutes) : null,
-                views_left: viewsLeft ? parseInt(viewsLeft) : null
+                expires_minutes: expiresMinutes ? parseInt(expiresMinutes) : 1,
+                views_left: viewsLeft ? parseInt(viewsLeft) : 1
             };
             const response = await api.post('/pastes/', payload);
             setResponseid(response.data.id);
