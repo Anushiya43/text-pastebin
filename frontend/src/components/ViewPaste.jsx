@@ -6,12 +6,10 @@ const ViewPaste = () => {
     const { id } = useParams();
     const [paste, setPaste] = useState(null);
     const [error, setError] = useState(null);
-    console.log("................................")
     useEffect(() => {
         const fetchPaste = async () => {
             try {
                 const response = await api.get(`/pastes/${id}`);
-                console.log("hi")
                 setPaste(response.data);
             } catch (err) {
                 setError("Paste not found or expired.");
