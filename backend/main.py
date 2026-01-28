@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 app = FastAPI()
 
 load_dotenv()
-
+ORIGINS = os.getenv("ORIGINS")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[ORIGINS],
