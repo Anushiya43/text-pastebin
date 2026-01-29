@@ -36,72 +36,87 @@ const CreatePaste = () => {
     };
 
     return (
-        <div className="container">
-            <h1>Create New Paste</h1>
-            <form onSubmit={handleSubmit}>
-                <textarea
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    placeholder="Enter your content here..."
-                    required
-                    style={{ width: '100%', height: '200px', marginBottom: '10px' }}
-                />
-                <div style={{ marginBottom: '10px' }}>
-                    <label>
-                        Expires in (minutes):
-                        <input
-                            type="number"
-                            min="1"
-                            value={expiresMinutes}
-                            onChange={(e) => setExpiresMinutes(e.target.value)}
-                            placeholder="1"
-                            style={{ marginLeft: '5px', marginRight: '15px' }}
-                        />
-                    </label>
-                    <label>
-                        View limit:
-                        <input
-                            type="number"
-                            min="1"
-                            value={viewsLeft}
-                            onChange={(e) => setViewsLeft(e.target.value)}
-                            placeholder="1"
-                            style={{ marginLeft: '5px' }}
-                        />
-                    </label>
-                </div>
-                <button type="submit">Create Paste</button>
-            </form>
-            {responseid && <div className="paste-result">
-                <h4>Your Paste is Ready! 🎉</h4>
-                <div className="paste-box">
-                    <div className="paste-url-container">
-                        <svg className="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                        </svg>
-                        <div className="paste-url">
-                            {import.meta.env.VITE_FRONTEND_URL + '/' + responseid}
+        <div className="container mt-5">
+            <div className="row justify-content-center">
+                <div className="col-md-8 col-lg-6">
+                    <h1 className="text-center mb-4">Create New Paste</h1>
+                    <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
+                        <div className="mb-3">
+                            <textarea
+                                className="form-control"
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
+                                placeholder="Enter your content here..."
+                                required
+                                rows="8"
+                            />
                         </div>
-                    </div>
-                    <button className="copy-btn" onClick={handleCopy}>
-                        {copied ? (
-                            <>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </>
-                        ) : (
-                            <>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                            </>
-                        )}
-                    </button>
+                        <div className="row mb-3">
+                            <div className="col-md-6 mb-3 mb-md-0">
+                                <label className="form-label">Expires in (minutes):</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    min="1"
+                                    value={expiresMinutes}
+                                    onChange={(e) => setExpiresMinutes(e.target.value)}
+                                    placeholder="1"
+                                />
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">View limit:</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    min="1"
+                                    value={viewsLeft}
+                                    onChange={(e) => setViewsLeft(e.target.value)}
+                                    placeholder="1"
+                                />
+                            </div>
+                        </div>
+                        <button type="submit" className="btn btn-primary w-100 py-2 fw-bold">Create Paste</button>
+                    </form>
+
+                    {responseid && (
+                        <div className="paste-result mt-4 p-4 border rounded shadow-sm bg-body-tertiary">
+                            <h4 className="mb-3 text-primary">Your Paste is Ready! 🎉</h4>
+                            <div className="input-group">
+                                <span className="input-group-text bg-transparent border-end-0">
+                                    <svg className="bi bi-link-45deg" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                    </svg>
+                                </span>
+                                <input
+                                    type="text"
+                                    className="form-control border-start-0"
+                                    value={import.meta.env.VITE_FRONTEND_URL + "/" + responseid}
+                                    readOnly
+                                />
+                                <button className="btn btn-outline-primary" onClick={handleCopy} type="button">
+                                    {copied ? (
+                                        <>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="me-1">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                            Copied
+                                        </>
+                                    ) : (
+                                        <>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="me-1">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                            </svg>
+                                            Copy
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
-            </div>}
+            </div>
         </div>
     );
 };
